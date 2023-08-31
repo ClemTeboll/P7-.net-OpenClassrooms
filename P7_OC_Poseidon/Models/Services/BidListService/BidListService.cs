@@ -1,9 +1,14 @@
-﻿using P7_OC_Poseidon.Models.Dtos;
+﻿using AutoMapper;
+using P7_OC_Poseidon.Data;
+using P7_OC_Poseidon.Models.Dtos;
 
 namespace P7_OC_Poseidon.Models.Services.BidListService
 {
     public class BidListService : IBidListService
     {
+        private readonly DataContext _context;
+        private readonly IMapper _mapper;
+
         public Task<List<BidListService>> AddBidListService(BidListDto BidListDto, BidList hero)
         {
             throw new NotImplementedException();

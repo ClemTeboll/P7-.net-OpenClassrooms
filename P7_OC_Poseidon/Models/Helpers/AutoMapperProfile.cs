@@ -5,7 +5,6 @@ namespace P7_OC_Poseidon.Models.Helpers
 {
     public class AutoMapperProfile : Profile
     {
-
         public AutoMapperProfile()
         {
             CreateMap<BidList, BidListDto>();
