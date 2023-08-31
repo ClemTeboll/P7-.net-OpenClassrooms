@@ -2,11 +2,11 @@
 {
     public class CurvePoint
     {
-        public int id { get; set; }
-        public int curveId { get; set; }
-        public DateTime asOfDate { get; set; }
-        public double term { get; set; }
-        public double value { get; set; }
-        public DateTime creationDate { get; set; }
+        public int Id { get; set; }
+        public int CurveId { get; set; }
+        public DateTime AsOfDate { get; set; }
+        public double Term { get; set; }
+        public double Value { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 }

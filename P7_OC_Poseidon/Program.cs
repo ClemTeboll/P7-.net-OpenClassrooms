@@ -1,3 +1,4 @@
+using P7_OC_Poseidon.Data;
 using P7_OC_Poseidon.Models.Services.BidListService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<IBidListService, BidListService>();
+
+builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();
 
