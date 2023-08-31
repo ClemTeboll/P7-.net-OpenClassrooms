@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using P7_OC_Poseidon.Data;
 using P7_OC_Poseidon.Models.Dtos;
 
@@ -9,24 +10,60 @@ namespace P7_OC_Poseidon.Models.Services.BidListService
         private readonly DataContext _context;
         private readonly IMapper _mapper;
 
-        public Task<List<BidListService>> AddBidListService(BidListDto BidListDto, BidList hero)
+        public BidListService(DataContext context, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _mapper = mapper;
         }
 
-        public Task<List<BidListService>> DeleteBidListService(int id)
+        public async Task<List<BidList>> AddBidList(BidListDto bidListDto)
         {
-            throw new NotImplementedException();
+            BidList newBidList = _mapper.Map<BidList>(bidListDto);
+
+            _context.BidLists.Add(newBidList);
+            await _context.SaveChangesAsync();
+
+            return await _context.BidLists.ToListAsync();
         }
 
-        public Task<BidListService?> GetSingleBidListService(int id)
+        public async Task<List<BidList>> DeleteBidList(int id)
         {
-            throw new NotImplementedException();
+            var bidList = await _context.BidLists.FindAsync(id);
+            if (bidList == null)
+            {
+                return null;
+            }
+
+            _context.BidLists.Remove(bidList);
+            await _context.SaveChangesAsync();
+
+            return await _context.BidLists.ToListAsync();
         }
 
-        public Task<List<BidListService>> UpdateBidListService(int id, BidListDto BidListDto)
+        public async Task<BidListDto?> GetSingleBidList(int id)
         {
-            throw new NotImplementedException();
+            var bidList = await _context.BidLists.FindAsync(id);
+            if (bidList == null)
+                return null;
+
+            BidListDto bidListDto = _mapper.Map<BidListDto>(bidList);
+
+            return bidListDto;
+        }
+
+        public async Task<List<BidList>> UpdateBidList(int id, BidListDto bidListDto)
+        {
+            var bidList = await _context.BidLists.FindAsync(id);
+
+            if (bidList == null)
+                return null;
+
+            _mapper.Map(bidListDto, bidList);
+
+            _context.Update(bidList);
+            await _context.SaveChangesAsync();
+
+            return await _context.BidLists.ToListAsync();
         }
     }
 }
