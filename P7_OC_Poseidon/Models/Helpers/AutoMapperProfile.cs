@@ -9,6 +9,9 @@ namespace P7_OC_Poseidon.Models.Helpers
         {
             CreateMap<BidList, BidListDto>();
             CreateMap<BidListDto, BidList>();
+
+            CreateMap<CurvePoint, CurvePointDto>();
+            CreateMap<CurvePointDto, CurvePoint>();
         }
     }
 }
