@@ -27,7 +27,7 @@ namespace P7_OC_Poseidon.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<BidList>> GetBidList(int id)
         {
-            var result = _bidListService.GetSingleBidList(id);
+            var result = await _bidListService.GetSingleBidList(id);
             if (result == null)
                 return NotFound("BidList not found");
 
@@ -39,7 +39,7 @@ namespace P7_OC_Poseidon.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> PutBidList(int id, BidListDto bidListDto)
         {
-            var result = _bidListService.UpdateBidList(id, bidListDto);
+            var result = await _bidListService.UpdateBidList(id, bidListDto);
             if (result == null)
                 return NotFound("BidList not found");
 
