@@ -35,7 +35,6 @@ namespace P7_OC_Poseidon.Controllers
         }
 
         // PUT: api/BidLists/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<ActionResult> PutBidList(int id, BidListDto bidListDto)
         {
@@ -47,7 +46,6 @@ namespace P7_OC_Poseidon.Controllers
         }
 
         // POST: api/BidLists
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<BidList>> PostBidList(BidListDto bidListDto)
         {
