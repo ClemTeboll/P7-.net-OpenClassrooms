@@ -2,10 +2,10 @@
 {
     public class Rating
     {
-        public int id { get; set; }
-        public string moodysRating { get; set; }
-        public string sandPRating { get; set; }
-        public string fitchRating { get; set; }
-        public int orderNumber { get; set; }
+        public int Id { get; set; }
+        public string MoodysRating { get; set; }
+        public string SandPRating { get; set; }
+        public string FitchRating { get; set; }
+        public int OrderNumber { get; set; }
     }
 }

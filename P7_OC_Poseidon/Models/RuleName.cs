@@ -2,12 +2,12 @@
 {
     public class RuleName
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public string json { get; set; }
-        public string template { get; set; }
-        public string sqlStr { get; set; }
-        public string sqlPart { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Json { get; set; }
+        public string Template { get; set; }
+        public string SqlStr { get; set; }
+        public string SqlPart { get; set; }
     }
 }
