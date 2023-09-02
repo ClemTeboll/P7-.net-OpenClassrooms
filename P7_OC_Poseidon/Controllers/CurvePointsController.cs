@@ -22,7 +22,7 @@ namespace P7_OC_Poseidon.Controllers
         {
             var result = await _curvePointService.GetAllCurvePoints();
             if (result == null)
-                return NotFound("BidLists not found");
+                return NotFound("CurvePoints not found");
 
             return Ok(result);
         }
@@ -33,7 +33,7 @@ namespace P7_OC_Poseidon.Controllers
         {
             var result = await _curvePointService.GetSingleCurvePoint(id);
             if (result == null)
-                return NotFound("BidList not found");
+                return NotFound("CurvePoint not found");
 
             return Ok(result);
         }
@@ -44,7 +44,7 @@ namespace P7_OC_Poseidon.Controllers
         {
             var result = await _curvePointService.UpdateCurvePoint(id, curvePointDto);
             if (result == null)
-                return NotFound("BidList not found");
+                return NotFound("CurvePoint not found");
 
             return Ok(result);
         }
@@ -55,7 +55,7 @@ namespace P7_OC_Poseidon.Controllers
         {
             var result = await _curvePointService.AddCurvePoint(curvePointDto);
             if (result == null)
-                return NotFound("BidList not found");
+                return NotFound("CurvePoint not found");
 
             return Ok(result);
         }
@@ -66,7 +66,7 @@ namespace P7_OC_Poseidon.Controllers
         {
             var result = await _curvePointService.DeleteCurvePoint(id);
             if (result == null)
-                return NotFound("BidList not found");
+                return NotFound("CurvePoint not found");
 
             return Ok(result);
         }
