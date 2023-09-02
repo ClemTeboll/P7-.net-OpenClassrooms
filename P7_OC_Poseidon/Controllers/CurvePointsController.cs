@@ -39,7 +39,6 @@ namespace P7_OC_Poseidon.Controllers
         }
 
         // PUT: api/CurvePoints/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCurvePoint(int id, CurvePointDto curvePointDto)
         {
@@ -51,7 +50,6 @@ namespace P7_OC_Poseidon.Controllers
         }
 
         // POST: api/CurvePoints
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<CurvePoint>> PostCurvePoint(CurvePointDto curvePointDto)
         {
