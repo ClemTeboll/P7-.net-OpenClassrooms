@@ -40,6 +40,17 @@ namespace P7_OC_Poseidon.Models.Services.BidListService
             return await _context.BidLists.ToListAsync();
         }
 
+        public async Task<List<BidListDto>> GetAllBidLists()
+        {
+            var bidLists = await _context.BidLists.ToListAsync();
+            if (bidLists == null)
+                return null;
+
+            List<BidListDto> bidListsDto = bidLists.Select(_mapper.Map<BidListDto>).ToList();
+
+            return bidListsDto;
+        }
+
         public async Task<BidListDto?> GetSingleBidList(int id)
         {
             var bidList = await _context.BidLists.FindAsync(id);

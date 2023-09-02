@@ -23,6 +23,17 @@ namespace P7_OC_Poseidon.Controllers
             _bidListService = bidListService;
         }
 
+        // GET: api/BidLists
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<BidList>>> GetBidLists()
+        {
+            var result = await _bidListService.GetAllBidLists();
+            if (result == null)
+                return NotFound("BidLists not found");
+
+            return Ok(result);
+        }
+
         // GET: api/BidLists/5
         [HttpGet("{id}")]
         public async Task<ActionResult<BidList>> GetBidList(int id)
