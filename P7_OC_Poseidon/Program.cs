@@ -1,6 +1,7 @@
 using P7_OC_Poseidon.Data;
 using P7_OC_Poseidon.Models.Services.BidListService;
 using P7_OC_Poseidon.Models.Services.CurvePointService;
+using P7_OC_Poseidon.Models.Services.RatingService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<IBidListService, BidListService>();
 builder.Services.AddScoped<ICurvePointService, CurvePointService>();
+builder.Services.AddScoped<IRatingService, RatingService>();
 
 builder.Services.AddDbContext<DataContext>();
 

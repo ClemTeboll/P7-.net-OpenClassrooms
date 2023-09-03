@@ -12,6 +12,9 @@ namespace P7_OC_Poseidon.Models.Helpers
 
             CreateMap<CurvePoint, CurvePointDto>();
             CreateMap<CurvePointDto, CurvePoint>();
+
+            CreateMap<Rating, RatingDto>();
+            CreateMap<RatingDto, Rating>();
         }
     }
 }
