@@ -15,6 +15,9 @@ namespace P7_OC_Poseidon.Models.Helpers
 
             CreateMap<Rating, RatingDto>();
             CreateMap<RatingDto, Rating>();
+
+            CreateMap<RuleName, RuleDto>();
+            CreateMap<RuleDto, RuleName>();
         }
     }
 }
