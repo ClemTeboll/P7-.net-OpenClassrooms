@@ -18,6 +18,9 @@ namespace P7_OC_Poseidon.Models.Helpers
 
             CreateMap<RuleName, RuleDto>();
             CreateMap<RuleDto, RuleName>();
+
+            CreateMap<Trade, TradeDto>();
+            CreateMap<TradeDto, Trade>();
         }
     }
 }
