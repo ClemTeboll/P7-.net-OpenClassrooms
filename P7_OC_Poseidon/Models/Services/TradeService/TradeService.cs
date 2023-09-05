@@ -42,11 +42,11 @@ namespace P7_OC_Poseidon.Models.Services.TradeService
 
         public async Task<List<TradeDto>> GetAllTrades()
         {
-            var ruleNames = await _context.Trades.ToListAsync();
-            if (ruleNames == null)
+            var trades = await _context.Trades.ToListAsync();
+            if (trades == null)
                 return null;
 
-            List<TradeDto> tradeDto = ruleNames.Select(_mapper.Map<TradeDto>).ToList();
+            List<TradeDto> tradeDto = trades.Select(_mapper.Map<TradeDto>).ToList();
 
             return tradeDto;
         }
