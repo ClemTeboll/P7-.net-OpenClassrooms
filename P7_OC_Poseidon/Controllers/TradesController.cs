@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using P7_OC_Poseidon.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using P7_OC_Poseidon.Models;
 using P7_OC_Poseidon.Models.Dtos;
 using P7_OC_Poseidon.Models.Services.TradeService;
