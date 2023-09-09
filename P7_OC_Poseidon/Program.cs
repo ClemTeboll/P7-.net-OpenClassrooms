@@ -2,8 +2,11 @@ using P7_OC_Poseidon.Data;
 using P7_OC_Poseidon.Models.Services.BidListService;
 using P7_OC_Poseidon.Models.Services.CurvePointService;
 using P7_OC_Poseidon.Models.Services.RatingService;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("P7_OC_PoseidonContextConnection") ?? throw new InvalidOperationException("Connection string 'P7_OC_PoseidonContextConnection' not found.");
 
 // Add services to the container.
 

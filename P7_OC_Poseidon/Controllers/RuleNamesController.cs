@@ -14,18 +14,18 @@ namespace P7_OC_Poseidon.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RuleDtosController : ControllerBase
+    public class RuleController : ControllerBase
     {
         private readonly IRuleNameService _ruleNameService;
 
-        public RuleDtosController(IRuleNameService ruleNameService)
+        public RuleController(IRuleNameService ruleNameService)
         {
             _ruleNameService = ruleNameService;
         }
 
         // GET: api/RuleDtos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RuleDto>>> GetRuleDtos()
+        public async Task<ActionResult<IEnumerable<RuleDto>>> GetRules()
         {
             var result = await _ruleNameService.GetAllRules();
             if (result == null)
@@ -36,7 +36,7 @@ namespace P7_OC_Poseidon.Controllers
 
         // GET: api/RuleDtos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<RuleDto>> GetRuleDto(int id)
+        public async Task<ActionResult<RuleDto>> GetRule(int id)
         {
             var result = await _ruleNameService.GetSingleRule(id);
             if (result == null)
@@ -47,7 +47,7 @@ namespace P7_OC_Poseidon.Controllers
 
         // PUT: api/RuleDtos/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRuleDto(int id, RuleDto ruleDto)
+        public async Task<IActionResult> PutRule(int id, RuleDto ruleDto)
         {
             var result = await _ruleNameService.UpdateRule(id, ruleDto);
             if (result == null)
@@ -58,7 +58,7 @@ namespace P7_OC_Poseidon.Controllers
 
         // POST: api/RuleDtos
         [HttpPost]
-        public async Task<ActionResult<RuleDto>> PostRuleDto(RuleDto ruleDto)
+        public async Task<ActionResult<RuleDto>> PostRule(RuleDto ruleDto)
         {
             var result = await _ruleNameService.AddRule(ruleDto);
             if (result == null)
@@ -69,7 +69,7 @@ namespace P7_OC_Poseidon.Controllers
 
         // DELETE: api/RuleDtos/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRuleDto(int id)
+        public async Task<IActionResult> DeleteRule(int id)
         {
             var result = await _ruleNameService.DeleteRule(id);
             if (result == null)

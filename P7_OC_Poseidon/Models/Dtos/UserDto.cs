@@ -5,6 +5,7 @@
         int Id,
         string UserName,
         string Password,
+        string Email,
         string FullName,
         string Role
     );

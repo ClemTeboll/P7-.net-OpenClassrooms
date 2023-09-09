@@ -18,12 +18,33 @@ namespace P7_OC_Poseidon.Models.Services.UserService
 
         public async Task<List<User>> AddUser(UserDto userDto)
         {
+            userDto.Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
             User newUser = _mapper.Map<UserDto, User>(userDto);
 
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
 
             return await _context.Users.ToListAsync();
+        }
+
+        public async Task<User> LoginUser(UserDto userDto)
+        {
+            User user = await _context.Users
+                    .Where(x => x.Email == userDto.Email)
+                    .FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+                return null;
+            }
+            else if (BCrypt.Net.BCrypt.Verify(userDto.Password, user.Password))
+            {
+                return user;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public async Task<List<User>> DeleteUser(int id)

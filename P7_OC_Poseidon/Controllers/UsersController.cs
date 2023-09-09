@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Mvc;
 using P7_OC_Poseidon.Models;
 using P7_OC_Poseidon.Models.Dtos;
 using P7_OC_Poseidon.Models.Services.UserService;
@@ -49,14 +50,27 @@ namespace P7_OC_Poseidon.Controllers
             return Ok(result);
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(UserDto userDto)
+        // POST: api/Users/Register
+        [HttpPost("Register")]
+        public async Task<ActionResult<User>> Register(UserDto userDto)
         {
             var result = await _userService.AddUser(userDto);
             if (result == null)
                 return NotFound("User not found");
+
+            return Ok(result);
+        }
+
+        // POST: api/Users/Register
+        [HttpPost("Login")]
+        public async Task<ActionResult<User>> Login(UserDto userDto)
+        {
+            var result = await _userService.LoginUser(userDto);
+
+            if (result == null)
+            {
+                return BadRequest("Account or password doesn't match");
+            }
 
             return Ok(result);
         }
