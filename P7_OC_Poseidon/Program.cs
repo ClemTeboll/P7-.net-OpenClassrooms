@@ -1,9 +1,11 @@
+using Microsoft.EntityFrameworkCore;
 using P7_OC_Poseidon.Data;
 using P7_OC_Poseidon.Models.Services.BidListService;
 using P7_OC_Poseidon.Models.Services.CurvePointService;
 using P7_OC_Poseidon.Models.Services.RatingService;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+using P7_OC_Poseidon.Models.Services.RuleNameService;
+using P7_OC_Poseidon.Models.Services.TradeService;
+using P7_OC_Poseidon.Models.Services.UserService;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("P7_OC_PoseidonContextConnection") ?? throw new InvalidOperationException("Connection string 'P7_OC_PoseidonContextConnection' not found.");
@@ -18,7 +20,11 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<IBidListService, BidListService>();
 builder.Services.AddScoped<ICurvePointService, CurvePointService>();
 builder.Services.AddScoped<IRatingService, RatingService>();
+builder.Services.AddScoped<IRuleNameService, RuleNameService>();
+builder.Services.AddScoped<ITradeService, TradeService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
+// Data context
 builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();
