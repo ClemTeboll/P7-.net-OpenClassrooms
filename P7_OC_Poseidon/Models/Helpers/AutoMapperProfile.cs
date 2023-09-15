@@ -8,22 +8,28 @@ namespace P7_OC_Poseidon.Models.Helpers
         public AutoMapperProfile()
         {
             CreateMap<BidList, BidListDto>();
-            CreateMap<BidListDto, BidList>();
+            CreateMap<BidListDto, BidList>()
+                .ForMember(dest => dest.BidListId, opt => opt.Ignore());
 
             CreateMap<CurvePoint, CurvePointDto>();
-            CreateMap<CurvePointDto, CurvePoint>();
+            CreateMap<CurvePointDto, CurvePoint>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
 
             CreateMap<Rating, RatingDto>();
-            CreateMap<RatingDto, Rating>();
+            CreateMap<RatingDto, Rating>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
 
             CreateMap<RuleName, RuleDto>();
-            CreateMap<RuleDto, RuleName>();
+            CreateMap<RuleDto, RuleName>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
 
             CreateMap<Trade, TradeDto>();
-            CreateMap<TradeDto, Trade>();
+            CreateMap<TradeDto, Trade>()
+                .ForMember(dest => dest.TradeId, opt => opt.Ignore());
 
             CreateMap<User, UserDto>();
-            CreateMap<UserDto, User>();
+            CreateMap<UserDto, User>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
         }
     }
 }
