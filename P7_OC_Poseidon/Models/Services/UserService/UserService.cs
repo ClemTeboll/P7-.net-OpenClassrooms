@@ -1,7 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using P7_OC_Poseidon.Data;
 using P7_OC_Poseidon.Models.Dtos;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace P7_OC_Poseidon.Models.Services.UserService
 {
@@ -9,14 +13,16 @@ namespace P7_OC_Poseidon.Models.Services.UserService
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-        public UserService(DataContext context, IMapper mapper)
+        public UserService(DataContext context, IMapper mapper, IConfiguration configuration)
         {
             _context = context;
             _mapper = mapper;
+            _configuration = configuration;
         }
 
-        public async Task<List<User>> AddUser(UserDto userDto)
+        public async Task<List<User>> RegisterUser(UserDto userDto)
         {
             userDto.Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
             User newUser = _mapper.Map<UserDto, User>(userDto);
@@ -27,7 +33,7 @@ namespace P7_OC_Poseidon.Models.Services.UserService
             return await _context.Users.ToListAsync();
         }
 
-        public async Task<User> LoginUser(UserDto userDto)
+        public async Task<string> LoginUser(AuthDto userDto)
         {
             User user = await _context.Users
                     .Where(x => x.Email == userDto.Email)
@@ -39,7 +45,9 @@ namespace P7_OC_Poseidon.Models.Services.UserService
             }
             else if (BCrypt.Net.BCrypt.Verify(userDto.Password, user.Password))
             {
-                return user;
+                userDto.Name = user.UserName;
+                string token = CreateToken(userDto);
+                return token;
             }
             else
             {
@@ -96,6 +104,29 @@ namespace P7_OC_Poseidon.Models.Services.UserService
             await _context.SaveChangesAsync();
 
             return await _context.Users.ToListAsync();
+        }
+
+        private string CreateToken(AuthDto user)
+        {
+            List<Claim> claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Name!)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                _configuration.GetSection("Jwt:Token").Value!));
+
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+
+            var token = new JwtSecurityToken(
+                    claims: claims,
+                    expires: DateTime.Now.AddDays(1),
+                    signingCredentials: credentials
+                );
+
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return jwt!;
         }
     }
 }

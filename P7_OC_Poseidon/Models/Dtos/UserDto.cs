@@ -2,11 +2,11 @@
 {
     public record struct UserDto
     (
-        int Id,
-        string UserName,
-        string Password,
-        string Email,
-        string FullName,
-        string Role
+        int? Id,
+        string? UserName,
+        string? Password,
+        string? Email,
+        string? FullName,
+        string? Role
     );
 }

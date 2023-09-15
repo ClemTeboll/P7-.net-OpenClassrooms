@@ -54,7 +54,7 @@ namespace P7_OC_Poseidon.Controllers
         [HttpPost("Register")]
         public async Task<ActionResult<User>> Register(UserDto userDto)
         {
-            var result = await _userService.AddUser(userDto);
+            var result = await _userService.RegisterUser(userDto);
             if (result == null)
                 return NotFound("User not found");
 
@@ -63,7 +63,7 @@ namespace P7_OC_Poseidon.Controllers
 
         // POST: api/Users/Register
         [HttpPost("Login")]
-        public async Task<ActionResult<User>> Login(UserDto userDto)
+        public async Task<ActionResult<User>> Login(AuthDto userDto)
         {
             var result = await _userService.LoginUser(userDto);
 
