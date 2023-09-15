@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using P7_OC_Poseidon.Models;
 
-namespace P7_OC_Poseidon.Data
+namespace P7_OC_Poseidon.Models.Data
 {
     public class DataContext : DbContext
     {

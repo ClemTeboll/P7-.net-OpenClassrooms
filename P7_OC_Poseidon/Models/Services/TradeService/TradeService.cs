@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using P7_OC_Poseidon.Data;
+using P7_OC_Poseidon.Models.Data;
 using P7_OC_Poseidon.Models.Dtos;
 
 namespace P7_OC_Poseidon.Models.Services.TradeService

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using P7_OC_Poseidon.Data;
+using P7_OC_Poseidon.Models.Data;
 using P7_OC_Poseidon.Models.Dtos;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

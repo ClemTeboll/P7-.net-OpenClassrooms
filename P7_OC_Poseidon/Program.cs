@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using P7_OC_Poseidon.Data;
+using P7_OC_Poseidon.Models.Data;
 using P7_OC_Poseidon.Models.Services.BidListService;
 using P7_OC_Poseidon.Models.Services.CurvePointService;
 using P7_OC_Poseidon.Models.Services.RatingService;
