@@ -25,7 +25,10 @@ builder.Services.AddScoped<ITradeService, TradeService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 // Data context
-builder.Services.AddDbContext<DataContext>();
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    options.UseSqlServer(connectionString);
+});
 
 var app = builder.Build();
 

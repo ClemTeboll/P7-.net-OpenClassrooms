@@ -1,4 +1,6 @@
-﻿namespace P7_OC_Poseidon.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace P7_OC_Poseidon.Models
 {
     public class User
     {
@@ -8,5 +10,14 @@
         public string Email { get; set; }
         public string FullName { get; set; }
         public string Role { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>(cp =>
+            {
+                cp.HasKey(x => x.Id);
+                cp.ToTable(nameof(User));
+            });
+        }
     }
 }

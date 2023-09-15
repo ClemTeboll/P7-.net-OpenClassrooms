@@ -7,13 +7,11 @@ namespace P7_OC_Poseidon.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected void OnConfiguring(ModelBuilder modelBuilder)
         {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=localhost;Database=P7_OC_Poseidon;Trusted_Connection=true;TrustServerCertificate=true;");
+            DatabaseConfig.Configure(modelBuilder);
         }
 
         public DbSet<BidList> BidLists { get; set; }

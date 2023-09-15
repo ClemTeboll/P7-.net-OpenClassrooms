@@ -1,4 +1,6 @@
-﻿namespace P7_OC_Poseidon.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace P7_OC_Poseidon.Models
 {
     public class Trade
     {
@@ -23,5 +25,14 @@
         public string DealType { get; set; }
         public string SourceListId { get; set; }
         public string Side { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Trade>(cp =>
+            {
+                cp.HasKey(x => x.TradeId);
+                cp.ToTable(nameof(Trade));
+            });
+        }
     }
 }
