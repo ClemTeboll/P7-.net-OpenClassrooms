@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using P7_OC_Poseidon.Models.Dtos;
 using P7_OC_Poseidon.Models.Services.RuleNameService;
 
 namespace P7_OC_Poseidon.Controllers
 {
+    [ApiController, Authorize]
     [Route("api/[controller]")]
-    [ApiController]
     public class RuleController : ControllerBase
     {
         private readonly IRuleNameService _ruleNameService;

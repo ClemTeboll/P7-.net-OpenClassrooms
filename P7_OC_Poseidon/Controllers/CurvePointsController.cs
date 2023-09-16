@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using P7_OC_Poseidon.Models;
 using P7_OC_Poseidon.Models.Dtos;
 using P7_OC_Poseidon.Models.Services.CurvePointService;
 
 namespace P7_OC_Poseidon.Controllers
 {
+    [ApiController, Authorize]
     [Route("api/[controller]")]
-    [ApiController]
     public class CurvePointsController : ControllerBase
     {
         private readonly ICurvePointService _curvePointService;

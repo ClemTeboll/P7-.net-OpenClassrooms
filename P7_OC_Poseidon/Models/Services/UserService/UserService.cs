@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using P7_OC_Poseidon.Data;
+using P7_OC_Poseidon.Models.Data;
 using P7_OC_Poseidon.Models.Dtos;
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Text;
 
 namespace P7_OC_Poseidon.Models.Services.UserService
@@ -108,25 +107,23 @@ namespace P7_OC_Poseidon.Models.Services.UserService
 
         private string CreateToken(AuthDto user)
         {
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.Name!)
-            };
-
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                _configuration.GetSection("Jwt:Token").Value!));
+                _configuration.GetSection("Jwt:Secret").Value!));
 
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
-            var token = new JwtSecurityToken(
-                    claims: claims,
-                    expires: DateTime.Now.AddDays(1),
-                    signingCredentials: credentials
-                );
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Issuer = _configuration["Jwt:ValidIssuer"],
+                Audience = _configuration["Jwt:ValidAudience"],
+                Expires = DateTime.UtcNow.AddMinutes(1),
+                SigningCredentials = credentials
+            };
 
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return jwt!;
+            return tokenHandler.WriteToken(token);
         }
     }
 }

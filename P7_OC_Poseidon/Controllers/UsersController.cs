@@ -1,4 +1,5 @@
 ﻿using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using P7_OC_Poseidon.Models;
 using P7_OC_Poseidon.Models.Dtos;
@@ -6,8 +7,8 @@ using P7_OC_Poseidon.Models.Services.UserService;
 
 namespace P7_OC_Poseidon.Controllers
 {
+    [ApiController, Authorize]
     [Route("api/[controller]")]
-    [ApiController]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -51,7 +52,7 @@ namespace P7_OC_Poseidon.Controllers
         }
 
         // POST: api/Users/Register
-        [HttpPost("Register")]
+        [HttpPost("Register"), AllowAnonymous]
         public async Task<ActionResult<User>> Register(UserDto userDto)
         {
             var result = await _userService.RegisterUser(userDto);
@@ -62,7 +63,7 @@ namespace P7_OC_Poseidon.Controllers
         }
 
         // POST: api/Users/Register
-        [HttpPost("Login")]
+        [HttpPost("Login"), AllowAnonymous]
         public async Task<ActionResult<User>> Login(AuthDto userDto)
         {
             var result = await _userService.LoginUser(userDto);
