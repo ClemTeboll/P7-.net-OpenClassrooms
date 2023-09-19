@@ -116,7 +116,7 @@ namespace P7_OC_Poseidon.Models.Services.UserService
             {
                 Issuer = _configuration["Jwt:ValidIssuer"],
                 Audience = _configuration["Jwt:ValidAudience"],
-                Expires = DateTime.UtcNow.AddMinutes(1),
+                Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = credentials
             };
 
