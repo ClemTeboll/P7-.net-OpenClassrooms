@@ -28,10 +28,10 @@ namespace P7_OC_Poseidon.Models
 
         public static void Configure(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Trade>(cp =>
+            modelBuilder.Entity<Trade>(t =>
             {
-                cp.HasKey(x => x.TradeId);
-                cp.ToTable(nameof(Trade));
+                t.HasKey(x => x.TradeId);
+                t.ToTable(nameof(Trade));
             });
         }
     }

@@ -13,10 +13,10 @@ namespace P7_OC_Poseidon.Models
 
         public static void Configure(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>(cp =>
+            modelBuilder.Entity<User>(u =>
             {
-                cp.HasKey(x => x.Id);
-                cp.ToTable(nameof(User));
+                u.HasKey(x => x.Id);
+                u.ToTable(nameof(User));
             });
         }
     }
